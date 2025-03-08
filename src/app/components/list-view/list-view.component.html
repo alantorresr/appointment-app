@@ -1,0 +1,11 @@
+<p>Appointments List</p>
+<ul>
+    <li *ngFor="let item of items" >
+        <p>{{item.AppointmentId}}</p>
+        <p>{{item.Title}}</p>
+        <p>{{item.Description}}</p>
+        <button (click)="updateItem(item.AppointmentId)">Actualizar</button>
+        <button (click)="deleteItem(item.AppointmentId)">Borrar</button>
+    </li>
+</ul>
+
