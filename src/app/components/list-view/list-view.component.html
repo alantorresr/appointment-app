@@ -1,5 +1,5 @@
 <p>Appointments List</p>
-<ul>
+<!-- <ul>
     <li *ngFor="let item of items" >
         <p>{{item.AppointmentId}}</p>
         <p>{{item.Title}}</p>
@@ -7,5 +7,13 @@
         <button (click)="updateItem(item.AppointmentId)">Actualizar</button>
         <button (click)="deleteItem(item.AppointmentId)">Borrar</button>
     </li>
-</ul>
+</ul> -->
 
+<ul>
+    <li *ngFor="let item of appointment" >
+        <p>{{item.id}}</p>
+        <p>{{item.title}}</p>
+        <button (click)="updateItem(item.id)">Actualizar</button>
+        <button (click)="deleteItem(item.id)">Borrar</button>
+    </li>
+</ul>

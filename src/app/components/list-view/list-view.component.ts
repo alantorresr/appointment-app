@@ -1,5 +1,7 @@
-import { NgFor } from '@angular/common';
-import { Component} from '@angular/core';
+//import { NgFor } from '@angular/common';
+import { Component, OnInit} from '@angular/core';
+import { AppointmentService } from '../../services/appointment.service';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-list-view',
@@ -7,7 +9,21 @@ import { Component} from '@angular/core';
   templateUrl: './list-view.component.html',
   styleUrl: './list-view.component.css'
 })
-export class ListViewComponent {
+export class ListViewComponent implements OnInit {
+  appointment: any;
+
+  constructor(private appointmentService: AppointmentService) { }
+
+  ngOnInit(): void {
+   this.getAppointment(1);
+  }
+  getAppointment(id: number): void {
+    this.appointmentService.getAppointment(id).subscribe(data => {
+      this.appointment = data;
+      console.log(this.appointment);
+    });
+  }
+  
 items = [
   {AppointmentId: 1,Title:'Appointment 1',Description:'Description 1'},
   {AppointmentId: 2,Title:'Appointment 2',Description:'Description 2'},

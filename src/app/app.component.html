@@ -179,6 +179,7 @@
 
 <main class="main">
   <div class="content">
+    
     <div class="left-side">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -226,7 +227,24 @@
         </defs>
       </svg>
       <h1>Hello, {{ title }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
+     <!--  <div *ngIf="appointment">
+        <h1>Appointment Details</h1>
+        <p>ID: {{ appointment.id }}</p>
+        <p>Descripción: {{ appointment.title }}</p>
+      </div>  -->
+      <!-- <ul>
+        <li *ngFor="let item of appointment" >
+            <p>{{item.id}}</p>
+            <p>{{item.title}}</p>
+        </li>
+    </ul> -->
+      <!-- <div *ngIf="appointment">
+        <h1>Appointment Details</h1>
+        <p>ID: {{ appointment.id }}</p>
+        <p>Fecha: {{ appointment.date }}</p>
+        <p>Descripción: {{ appointment.description }}</p>
+      </div>  -->
+
       <div>
         <app-list-view></app-list-view>
       </div>
@@ -234,7 +252,7 @@
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     
-    <div class="right-side">
+    <!-- <div class="right-side">
       <div class="pill-group">
         @for (item of [
           { title: 'Explore the Docs', link: 'https://angular.dev' },
@@ -325,7 +343,7 @@
           </svg>
         </a>
       </div>
-    </div>
+    </div> -->
   </div>
 </main>
 
