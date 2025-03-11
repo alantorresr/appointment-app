@@ -1,12 +1,16 @@
 <h2>Appointment Form</h2>
-<form (ngSubmit)="onSubmit()" #appointmentForm="ngForm">
+<form (ngSubmit)="onSubmit(appointmentForm)" #appointmentForm="ngForm">
+  <div>
+    <label for="appointmentId">Appointment Id:</label>
+    <input type="text" id="appointmentId" required [(ngModel)]="appointment.appointmentId" name="appointmentId">
+  </div>
   <div>
     <label for="title">Title:</label>
     <input type="text" id="title" required [(ngModel)]="appointment.title" name="title">
   </div>
   <div>
     <label for="date">Date:</label>
-    <input type="date" id="date" required [(ngModel)]="appointment.date" name="date">
+    <input type="date" id="date" required [(ngModel)]="appointment.appointmentDate" name="appointmentDate">
   </div>
   <div>
     <label for="time">Time:</label>

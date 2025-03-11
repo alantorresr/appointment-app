@@ -9,7 +9,7 @@ import { NgFor, NgIf } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone:true,
-  imports: [RouterOutlet,ListViewComponent,AppointmentFormComponent,NgIf,NgFor],
+  imports: [RouterOutlet,ListViewComponent,AppointmentFormComponent,NgFor],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -21,12 +21,12 @@ export class AppComponent implements OnInit{
   constructor(private appointmentService: AppointmentService) { }
 
   ngOnInit(): void {
-   this.getAppointment(1);
+   //this.getAppointment(1);
   }
-  getAppointment(id: number): void {
+ /*  getAppointment(id: number): void {
     this.appointmentService.getAppointment(id).subscribe(data => {
       this.appointment = data;
       console.log(this.appointment);
     });
-  }
+  } */
 }

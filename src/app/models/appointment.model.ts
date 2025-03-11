@@ -1,9 +1,11 @@
-export class Appointment {
+export class AppointmentModel {
     constructor(
-      public appoinmentId: BigInteger,
-      public title: string,
-      public date: string,
-      public time: string,
-      public description?: string
+      public appointmentId?: number,
+      public title?: string,
+      public appointmentDate?: string,
+      public time?: string,
+      public description?: string,
+      public userid?: number,
+      public appointmentStatusId?: number
     ) {}
   }

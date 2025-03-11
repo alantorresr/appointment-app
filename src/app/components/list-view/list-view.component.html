@@ -8,12 +8,13 @@
         <button (click)="deleteItem(item.AppointmentId)">Borrar</button>
     </li>
 </ul> -->
-
 <ul>
     <li *ngFor="let item of appointment" >
-        <p>{{item.id}}</p>
+        <p>{{item.appointmentId}}</p>
         <p>{{item.title}}</p>
-        <button (click)="updateItem(item.id)">Actualizar</button>
-        <button (click)="deleteItem(item.id)">Borrar</button>
+        <p>{{item.description}}</p>
+        <p>{{item.appointmentDate}}</p>
+        <button (click)="updateItem(item)">Update</button>
+        <button (click)="deleteAppointment(item.appointmentId)">Delete</button>
     </li>
 </ul>
