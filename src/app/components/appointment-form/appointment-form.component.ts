@@ -1,21 +1,29 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppointmentService } from '../../services/appointment.service';
 import { AppointmentModel } from '../../models/appointment.model';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AppointmentSharedService } from '../../services/appointment-shared.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-appointment-form',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './appointment-form.component.html',
   styleUrls: ['./appointment-form.component.css']
 })
 export class AppointmentFormComponent implements OnInit {
   @Input() roleName: string = '';
-
-  appointment: AppointmentModel = new AppointmentModel(0, '','', '', '',0, 0);
+  applyForm = new FormGroup({
+    appointmentId: new FormControl(0, Validators.required),
+    title: new FormControl('', Validators.required),
+    appointmentDate: new FormControl('', Validators.required),
+    time: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    appointmentStatusId: new FormControl(0, Validators.required),
+  });
   isUpdating: boolean = false;
+
+  appointment: AppointmentModel = new AppointmentModel(0, '', '', '', '', 0, 0);
   appointmentStatusOptions = [
     { AppointmentStatusId: 1, AppointmentStatusName: 'New' },
     { AppointmentStatusId: 2, AppointmentStatusName: 'Approved' },
@@ -35,7 +43,7 @@ export class AppointmentFormComponent implements OnInit {
     });
   }
 
-  onSubmit(form: NgForm): void {
+  onSubmit(): void {
     if (this.isUpdating) {
       this.updateAppointment();
     } else {
@@ -43,15 +51,20 @@ export class AppointmentFormComponent implements OnInit {
     }
 
     // Reset form after submission
-    form.resetForm();
+    this.applyForm.reset();
     this.isUpdating = false;
   }
 
   newAppointment(): void {
-    this.appointment.userid=1;
-    this.appointment.appointmentStatusId=1;
-    this.appointment.appointmentDate = this.appointment.appointmentDate +'T'+ this.appointment.time
-   
+    this.appointment.appointmentId = this.applyForm.value.appointmentId ?? 0;
+    this.appointment.title = this.applyForm.value.title ?? '';
+    this.appointment.appointmentDate = `${this.applyForm.value.appointmentDate}T${this.applyForm.value.time}`;
+    this.appointment.time = this.applyForm.value.time ?? '';
+    this.appointment.description = this.applyForm.value.description ?? '';
+    this.appointment.userid = 1;
+    this.appointment.appointmentStatusId = 1;
+
+    console.log('Appointment', this.appointment);
 
     this.appointmentService.newAppointment(this.appointment).subscribe(
       response => {
@@ -67,16 +80,14 @@ export class AppointmentFormComponent implements OnInit {
   }
 
   updateAppointment(): void {
-    this.appointment.userid=1;
-    console.log('status');
-    console.log(this.appointment.appointmentStatusId);
-    //let entero: number = parseInt(this.appointment.appointmentStatusId, 10);
-    //this.appointment.appointmentStatusId=1;
-    //console.log('actualizar fecha');
-    //console.log(this.appointment.appointmentDate);
-    //console.log(this.appointment.time);
-    this.appointment.appointmentDate = this.appointment.appointmentDate +'T'+ this.appointment.time
-   
+    this.appointment.appointmentId = this.applyForm.value.appointmentId ?? 0;
+    this.appointment.title = this.applyForm.value.title ?? '';
+    this.appointment.appointmentDate = `${this.applyForm.value.appointmentDate}T${this.applyForm.value.time}`;
+    this.appointment.time = this.applyForm.value.time ?? '';
+    this.appointment.description = this.applyForm.value.description ?? '';
+    this.appointment.userid = 1;
+    this.appointment.appointmentStatusId = this.applyForm.value.appointmentStatusId ?? 1;
+
     if (!this.appointment.appointmentId) {
       alert('Appointment ID is required to update an appointment');
       return;
@@ -94,6 +105,4 @@ export class AppointmentFormComponent implements OnInit {
       }
     );
   }
-
-  
 }

@@ -1,31 +1,49 @@
 <h2>Appointment Form ({{ roleName }})</h2>
-<form (ngSubmit)="onSubmit(appointmentForm)" #appointmentForm="ngForm">
+<form [formGroup]="applyForm" (submit)="onSubmit()">
   <div>
     <label for="appointmentId">Appointment Id:</label>
-    <input type="text" id="appointmentId" required [(ngModel)]="appointment.appointmentId" name="appointmentId">
+    <input type="text" id="appointmentId" formControlName="appointmentId">
+    @if(applyForm.controls.appointmentId.errors?.['required'] && applyForm.controls.appointmentId.touched) {
+      <span class="inputError">This is required</span>
+    }
   </div>
   <div>
     <label for="title">Title:</label>
-    <input type="text" id="title" required [(ngModel)]="appointment.title" name="title">
+    <input type="text" id="title" formControlName="title">
+    @if(applyForm.controls.title.errors?.['required'] && applyForm.controls.title.touched) {
+      <span class="inputError">This is required</span>
+    }
   </div>
   <div>
     <label for="appointmentDate">Date:</label>
-    <input type="date" id="appointmentDate" required [(ngModel)]="appointment.appointmentDate" name="appointmentDate">
+    <input type="date" id="appointmentDate" formControlName="appointmentDate">
+    @if(applyForm.controls.appointmentDate.errors?.['required'] && applyForm.controls.appointmentDate.touched) {
+      <span class="inputError">This is required</span>
+    }
   </div>
   <div>
     <label for="time">Time:</label>
-    <input type="time" id="time" required [(ngModel)]="appointment.time" name="time">
+    <input type="time" id="time" formControlName="time">
+    @if(applyForm.controls.time.errors?.['required'] && applyForm.controls.time.touched) {
+      <span class="inputError">This is required</span>
+    }
   </div>
   <div>
     <label for="description">Description:</label>
-    <textarea id="description" [(ngModel)]="appointment.description" name="description"></textarea>
+    <textarea id="description" formControlName="description"></textarea>
+    @if(applyForm.controls.description.errors?.['required'] && applyForm.controls.description.touched) {
+      <span class="inputError">This is required</span>
+    }
   </div>
   <div>
     <label for="appointmentStatusId">Status:</label>
-    <input type="number" id="appointmentStatusId" required [(ngModel)]="appointment.appointmentStatusId" name="appointmentStatusId">
-    <select id="appointmentStatusId" required [(ngModel)]="appointment.appointmentStatusId" name="appointmentStatusId">
+    <input type="number" id="appointmentStatusId" formControlName="appointmentStatusId">
+    @if(applyForm.controls.appointmentStatusId.errors?.['required'] && applyForm.controls.appointmentStatusId.touched) {
+      <span class="inputError">This is required</span>
+    }
+    <!-- <select id="appointmentStatusId" required [(ngModel)]="appointment.appointmentStatusId" name="appointmentStatusId">
       <option *ngFor="let status of appointmentStatusOptions" [value]="status.AppointmentStatusName">{{ status.AppointmentStatusName }}</option>
-    </select>
+    </select> -->
   </div>
-  <button type="submit" [disabled]="!appointmentForm.form.valid">Save Appointment</button>
+  <button type="submit" [disabled]="!applyForm.valid">Save Appointment</button>
 </form>
