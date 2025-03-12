@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AppointmentService } from '../../services/appointment.service';
 import { AppointmentModel } from '../../models/appointment.model';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./appointment-form.component.css']
 })
 export class AppointmentFormComponent implements OnInit {
+  @Input() roleName: string = '';
+
   appointment: AppointmentModel = new AppointmentModel(0, '','', '', '',0, 0);
   isUpdating: boolean = false;
   appointmentStatusOptions = [

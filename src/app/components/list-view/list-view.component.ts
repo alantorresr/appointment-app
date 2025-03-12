@@ -1,5 +1,5 @@
 //import { NgFor } from '@angular/common';
-import { Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { AppointmentService } from '../../services/appointment.service';
 import { NgFor, NgIf } from '@angular/common';
 import { AppointmentModel } from '../../models/appointment.model';
@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './list-view.component.css'
 })
 export class ListViewComponent implements OnInit {
+  @Input() roleName: string = '';
+
   appointment?: AppointmentModel[];
  // appointment: any;
   //appointment: any;
