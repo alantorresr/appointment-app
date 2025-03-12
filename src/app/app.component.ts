@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {ListViewComponent} from './components/list-view/list-view.component'
-import { AppointmentFormComponent } from './components/appointment-form/appointment-form.component';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { AppointmentService } from '././services/appointment.service';
-import { NgFor, NgIf } from '@angular/common';
-
 
 @Component({
   selector: 'app-root',
-  standalone:true,
-  imports: [RouterOutlet,ListViewComponent,AppointmentFormComponent,NgFor],
+  standalone: true,
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
