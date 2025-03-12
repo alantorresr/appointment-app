@@ -13,8 +13,10 @@
         <p>{{item.appointmentId}}</p>
         <p>{{item.title}}</p>
         <p>{{item.description}}</p>
-        <p>{{item.appointmentDate}}</p>
+        <p>{{item.appointmentDate | date: 'dd/MM/yyyy hh:mm a'}}</p>
+        <p>{{item.appointmentStatusName}}</p>
+        <p>{{item.appointmentStatusId}}</p>
         <button (click)="updateItem(item)">Update</button>
         <button (click)="deleteAppointment(item.appointmentId)">Delete</button>
-    </li>
+    </li>   
 </ul>

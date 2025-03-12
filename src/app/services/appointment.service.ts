@@ -21,6 +21,7 @@ export class AppointmentService {
     }
   
     updateAppointment(id: number, appointment: AppointmentModel): Observable<any> {
+      console.log(appointment);
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
       return this.http.put(`${this.apiUrl}/${id}`, appointment, { headers }).pipe(catchError(this.handleError));
     }

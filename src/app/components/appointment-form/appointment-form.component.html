@@ -9,8 +9,8 @@
     <input type="text" id="title" required [(ngModel)]="appointment.title" name="title">
   </div>
   <div>
-    <label for="date">Date:</label>
-    <input type="date" id="date" required [(ngModel)]="appointment.appointmentDate" name="appointmentDate">
+    <label for="appointmentDate">Date:</label>
+    <input type="date" id="appointmentDate" required [(ngModel)]="appointment.appointmentDate" name="appointmentDate">
   </div>
   <div>
     <label for="time">Time:</label>
@@ -19,6 +19,13 @@
   <div>
     <label for="description">Description:</label>
     <textarea id="description" [(ngModel)]="appointment.description" name="description"></textarea>
+  </div>
+  <div>
+    <label for="appointmentStatusId">Status:</label>
+    <input type="number" id="appointmentStatusId" required [(ngModel)]="appointment.appointmentStatusId" name="appointmentStatusId">
+    <select id="appointmentStatusId" required [(ngModel)]="appointment.appointmentStatusId" name="appointmentStatusId">
+      <option *ngFor="let status of appointmentStatusOptions" [value]="status.AppointmentStatusName">{{ status.AppointmentStatusName }}</option>
+    </select>
   </div>
   <button type="submit" [disabled]="!appointmentForm.form.valid">Save Appointment</button>
 </form>
